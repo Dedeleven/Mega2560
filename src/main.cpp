@@ -5,56 +5,48 @@
 #define BLUE 3
 #define GREEN 5
 #define RED 6
+#define BLUE_BUTTON 9
+#define GREEN_BUTTON 8
 
 void setup()
 {
   pinMode(RED, OUTPUT);
   pinMode(GREEN, OUTPUT);
   pinMode(BLUE, OUTPUT);
-  // digitalWrite(RED, LOW);
-  // digitalWrite(GREEN, LOW);
-  // digitalWrite(BLUE, LOW);
+  pinMode(BLUE_BUTTON, INPUT_PULLUP);
+  pinMode(GREEN_BUTTON, INPUT_PULLUP);
+  digitalWrite(RED, HIGH);
 }
 
-// declare variable
-int redValue;
-int greenValue;
-int blueValue;
-int delayTime;
+
 
 void loop()
 {
-  // define variables
-  redValue = 255;
-  greenValue = 0;
-  blueValue = 0;
-  delayTime = 10;
-
-  for (int i = 0; i <255; i++ )
-  {
-    redValue -= 1;
-    greenValue += 1;
-    analogWrite(RED, redValue);
-    analogWrite(GREEN, greenValue);
-    delay(delayTime);
+  if (digitalRead(BLUE_BUTTON)==LOW)
+  { 
+    if (digitalRead(GREEN_BUTTON)==LOW)
+    {
+      digitalWrite(RED, HIGH);
+      digitalWrite(GREEN, HIGH);
+      digitalWrite(BLUE, LOW);
+    } 
+    else
+    {    
+      digitalWrite(RED, LOW);
+      digitalWrite(GREEN, LOW);
+      digitalWrite(BLUE, HIGH);
+    }
   }
-
-  for (int i = 0; i <255; i++ )
+  else if (digitalRead(GREEN_BUTTON)==LOW)
   {
-    greenValue -= 1;
-    blueValue += 1;
-    analogWrite(GREEN, greenValue);
-    analogWrite(BLUE, blueValue);
-    delay(delayTime);
+    digitalWrite(RED, LOW);
+    digitalWrite(GREEN, HIGH);
+    digitalWrite(BLUE, LOW);
   }
-
-  for (int i = 0; i <255; i++ )
+  else
   {
-    blueValue -= 1;
-    redValue += 1;
-    analogWrite(BLUE, blueValue);
-    analogWrite(RED, redValue);
-    delay(delayTime);
+    digitalWrite(RED, HIGH);
+    digitalWrite(GREEN, LOW);
+    digitalWrite(BLUE, LOW);
   }
-
 }
