@@ -29,12 +29,14 @@ void loop()
       digitalWrite(RED, HIGH);
       digitalWrite(GREEN, HIGH);
       digitalWrite(BLUE, LOW);
+      tone(12,523,10);
     } 
     else
     {    
       digitalWrite(RED, LOW);
       digitalWrite(GREEN, LOW);
       digitalWrite(BLUE, HIGH);
+      tone(12,659,10);
     }
   }
   else if (digitalRead(GREEN_BUTTON)==LOW)
@@ -42,6 +44,7 @@ void loop()
     digitalWrite(RED, LOW);
     digitalWrite(GREEN, HIGH);
     digitalWrite(BLUE, LOW);
+    tone(12,988,10);
   }
   else
   {
