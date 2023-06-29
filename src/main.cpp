@@ -1,26 +1,25 @@
 #include <Arduino.h>
-#include <Servo.h>
+#include <Ultrasonic.h>
 
 // Define Pins
-const int servoControlPin = 2;
-Servo myServo = Servo();
+const int triggerPin = 12;
+const int echoPin = 11;
+Ultrasonic myUltrasonic = Ultrasonic(triggerPin, echoPin);
+
+unsigned int a;
 
 void setup()
 {
-  myServo.attach(servoControlPin);
-  myServo.write(90);  
+  Serial.begin(9600); 
+  delay(1000);
 }
 
 
 
 void loop()
 {
-  myServo.write(90);
-  delay(500);
-  myServo.write(60);
-  delay(500);
-  myServo.write(90);
-  delay(500);
-  myServo.write(120);
+  a = myUltrasonic.read();
+  Serial.print(a);
+  Serial.println(" cm");
   delay(500);
 }
