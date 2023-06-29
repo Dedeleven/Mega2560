@@ -1,27 +1,26 @@
 #include <Arduino.h>
+#include <Servo.h>
 
 // Define Pins
-const int ledPin = 13;
-const int ballSwitchPin = 2;
+const int servoControlPin = 2;
+Servo myServo = Servo();
 
 void setup()
 {
-  pinMode(ledPin, OUTPUT);
-  pinMode(ballSwitchPin, INPUT);
-  digitalWrite(ballSwitchPin, HIGH);
+  myServo.attach(servoControlPin);
+  myServo.write(90);  
 }
 
 
 
 void loop()
 {
-  int digitalVal = digitalRead(ballSwitchPin);
-  if (digitalVal == HIGH)
-  {
-    digitalWrite(ledPin, HIGH);
-  }
-  else
-  {
-    digitalWrite(ledPin, LOW);
-  }
+  myServo.write(90);
+  delay(500);
+  myServo.write(60);
+  delay(500);
+  myServo.write(90);
+  delay(500);
+  myServo.write(120);
+  delay(500);
 }
